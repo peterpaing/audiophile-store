@@ -8,7 +8,7 @@ export default function BestGearSection() {
   return (
     <section
       aria-labelledby="best-gear-heading"
-      className="my-[120px] px-6 md:px-0 lg:my-[200px]"
+      className="mt-25 mb-[110px] px-6 md:px-0 lg:mt-40 lg:mb-[130px]"
     >
       <div className="mx-auto max-w-[327px] md:max-w-[689px] lg:max-w-[1110px]">
         <div className="flex flex-col gap-10 md:gap-[63px] lg:flex-row lg:items-center lg:justify-between lg:gap-0">

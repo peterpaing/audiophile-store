@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 
-import heroHeadphones from "@/assets/home/hero-headphones-transparent.png";
+import heroHeadphones from "@/assets/home/products/hero-headphones-transparent.png";
 
 export default function HeroSection() {
   return (
