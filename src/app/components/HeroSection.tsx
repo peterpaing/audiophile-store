@@ -12,8 +12,8 @@ export default function HeroSection() {
           alt=""
           aria-hidden="true"
           priority
-          sizes="(max-width: 767px) 110vw, (max-width: 1023px) 720px, 610px"
-          className="pointer-events-none absolute left-1/2 top-2 z-0 w-[140vw] max-w-none -translate-x-1/2 object-contain drop-shadow-[0_20px_28px_rgba(0,0,0,0.5)] md:top-0 md:w-[730px] lg:left-auto lg:right-[-20px] lg:top-[18px] lg:w-[610px] lg:translate-x-0"
+          sizes="(max-width: 767px) 650px, (max-width: 1023px) 730px, 610px"
+          className="pointer-events-none absolute left-1/2 top-2 z-0 w-[650px] max-w-none -translate-x-1/2 object-contain drop-shadow-[0_20px_28px_rgba(0,0,0,0.5)] md:top-[-10px] md:w-[730px] lg:left-auto lg:right-[-20px] lg:top-[18px] lg:w-[610px] lg:translate-x-0"
         />
 
         <div
