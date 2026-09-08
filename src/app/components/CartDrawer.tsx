@@ -93,7 +93,7 @@ export default function CartDrawer({
         type="button"
         aria-label="Close shopping cart"
         onClick={onClose}
-        className="absolute inset-0 cursor-default bg-black/40"
+        className="animate-fade-in absolute inset-0 cursor-default bg-black/40"
       />
 
       <aside
@@ -103,7 +103,7 @@ export default function CartDrawer({
         aria-labelledby="cart-heading"
         tabIndex={-1}
         onKeyDown={handleKeyDown}
-        className="absolute left-6 right-6 top-[114px] mx-auto max-h-[calc(100dvh-138px)] max-w-[377px] overflow-y-auto rounded-lg bg-white p-7 outline-none md:left-auto md:right-10 md:top-[120px] md:w-[377px] md:p-8 lg:right-[calc((100vw-1110px)/2)]"
+        className="animate-slide-in-right absolute left-6 right-6 top-[114px] mx-auto max-h-[calc(100dvh-138px)] max-w-[377px] overflow-y-auto rounded-lg bg-white p-7 outline-none md:left-auto md:right-10 md:top-[120px] md:w-[377px] md:p-8 lg:right-[calc((100vw-1110px)/2)]"
       >
         <div className="flex items-center justify-between">
           <h2
