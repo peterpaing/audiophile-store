@@ -11,7 +11,7 @@ const manrope = Manrope({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://your-domain.com"), // Replace after deployment
+  metadataBase: new URL("https://audiophile-store-eight.vercel.app"),
   title: {
     default: "Audiophile | Premium Audio Equipment",
     template: "%s | Audiophile",

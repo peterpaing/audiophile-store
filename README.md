@@ -4,6 +4,10 @@ A responsive ecommerce website for premium audio products.
 
 I built this project to practise creating a complete shopping experience with Next.js: users can browse categories, explore products, manage a cart, and complete a demo checkout flow.
 
+## Preview
+
+![Audiophile website preview](./public/images/audiophile-preview.png)
+
 ## Features
 
 - Responsive layouts for mobile, tablet, and desktop
