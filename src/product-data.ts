@@ -156,7 +156,7 @@ export interface Product {
 export const products: Product[] =[
   {
     "id": 1,
-    "slug": "yx1-earphones",
+    "slug": "yx1-wireless-earphones",
     "name": "YX1 Wireless Earphones",
     "image": {
       "mobile": product_yx1_earphones_mobile_image_product,
