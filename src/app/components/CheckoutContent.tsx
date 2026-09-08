@@ -70,14 +70,14 @@ function OrderConfirmation({
   const remainingItems = items.length - 1;
 
   return (
-    <div className="fixed inset-0 z-[110] flex items-center justify-center bg-black/40 px-6">
+    <div className="animate-fade-in fixed inset-0 z-[110] flex items-center justify-center bg-black/40 px-6">
       <div
         ref={dialogRef}
         role="dialog"
         aria-modal="true"
         aria-labelledby="confirmation-heading"
         tabIndex={-1}
-        className="w-full max-w-[540px] rounded-lg bg-white p-8 outline-none md:p-12"
+        className="animate-fade-up w-full max-w-[540px] rounded-lg bg-white p-8 outline-none md:p-12"
       >
         <div
           aria-hidden="true"
