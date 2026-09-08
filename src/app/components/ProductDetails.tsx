@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FaArrowLeft } from "react-icons/fa6";
 
 import type { Product, ResponsiveImage } from "@/product-data";
 import CategoryNavigation from "@/app/components/CategoryNavigation";
 import ProductPurchase from "@/app/components/ProductPurchase";
-import { FaArrowLeft } from "react-icons/fa6";
 
 type ProductDetailsProps = {
   product: Product;
@@ -71,12 +71,12 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             aria-labelledby="product-heading"
             className="mt-6 flex flex-col gap-8 md:mt-6 md:flex-row md:items-center md:gap-[69px] lg:mt-14 lg:gap-[125px]"
           >
-            <div className="relative h-[327px] overflow-hidden rounded-lg bg-surface md:h-[480px] md:w-[281px] md:shrink-0 lg:h-[560px] lg:w-[540px]">
+            <div className="group relative h-[327px] overflow-hidden rounded-lg bg-surface md:h-[480px] md:w-[281px] md:shrink-0 lg:h-[560px] lg:w-[540px]">
               <ResponsiveProductImage
                 image={product.image}
                 alt={product.name}
                 sizes="(max-width: 767px) 327px, (max-width: 1023px) 281px, 540px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
               />
             </div>
 
@@ -146,30 +146,30 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             aria-label={`${product.name} gallery`}
             className="mt-[88px] grid gap-5 md:mt-[120px] md:grid-cols-[277px_1fr] md:grid-rows-2 md:gap-5 lg:mt-[160px] lg:grid-cols-[445px_1fr] lg:gap-[30px]"
           >
-            <div className="relative h-[174px] overflow-hidden rounded-lg md:h-full">
+            <div className="group relative h-[174px] overflow-hidden rounded-lg md:h-full">
               <ResponsiveProductImage
                 image={product.gallery.first}
                 alt={`${product.name}, gallery image 1`}
                 sizes="(max-width: 767px) 327px, (max-width: 1023px) 277px, 445px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
               />
             </div>
 
-            <div className="relative h-[174px] overflow-hidden rounded-lg md:h-full md:row-start-2">
+            <div className="group relative h-[174px] overflow-hidden rounded-lg md:h-full md:row-start-2">
               <ResponsiveProductImage
                 image={product.gallery.second}
                 alt={`${product.name}, gallery image 2`}
                 sizes="(max-width: 767px) 327px, (max-width: 1023px) 277px, 445px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
               />
             </div>
 
-            <div className="relative h-[368px] overflow-hidden rounded-lg md:col-start-2 md:row-span-2 md:row-start-1 md:h-[368px] lg:h-[592px]">
+            <div className="group relative h-[368px] overflow-hidden rounded-lg md:col-start-2 md:row-span-2 md:row-start-1 md:h-[368px] lg:h-[592px]">
               <ResponsiveProductImage
                 image={product.gallery.third}
                 alt={`${product.name}, gallery image 3`}
                 sizes="(max-width: 767px) 327px, (max-width: 1023px) 395px, 635px"
-                className="object-cover"
+                className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
               />
             </div>
           </section>
@@ -188,13 +188,13 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
             <ul className="mt-10 grid gap-14 md:mt-14 md:grid-cols-3 md:gap-[11px] lg:gap-[30px]">
               {product.others.map((relatedProduct) => (
                 <li key={relatedProduct.slug}>
-                  <article className="text-center">
+                  <article className="group text-center">
                     <div className="relative h-[120px] overflow-hidden rounded-lg bg-surface md:h-[318px]">
                       <ResponsiveProductImage
                         image={relatedProduct.image}
                         alt=""
                         sizes="(max-width: 767px) 327px, (max-width: 1023px) 223px, 350px"
-                        className="object-cover"
+                        className="object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none"
                       />
                     </div>
 

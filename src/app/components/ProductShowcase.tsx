@@ -15,11 +15,11 @@ const outlineButtonClass =
 export default function ProductShowcase() {
   return (
     <section
-    aria-label="Featured products"
-    className="mt-20 px-6 md:mt-20 md:px-10 lg:mt-24 lg:px-10"
+      aria-label="Featured products"
+      className="mt-20 px-6 md:mt-20 md:px-10 lg:mt-24 lg:px-10"
     >
       <div className="mx-auto max-w-[500px] space-y-6 md:max-w-[760px] md:space-y-8 lg:max-w-[1110px] lg:space-y-12">
-        <article className="relative h-[560px] overflow-hidden rounded-lg bg-primary text-white md:h-[620px] lg:h-95">
+        <article className="relative h-[560px] overflow-hidden rounded-lg bg-primary text-white transition-transform duration-300 hover:-translate-y-1 md:h-[620px] lg:h-95">
           <Image
             src={circles}
             alt=""
@@ -54,7 +54,7 @@ export default function ProductShowcase() {
           </div>
         </article>
 
-        <article className="relative h-80 overflow-hidden rounded-lg bg-[#D8D8D8]">
+        <article className="relative h-80 overflow-hidden rounded-lg bg-[#D8D8D8] transition-transform duration-300 hover:-translate-y-1">
           <Image
             src={zx7Speaker}
             alt=""
@@ -79,7 +79,7 @@ export default function ProductShowcase() {
         </article>
 
         <div className="grid grid-cols-2 gap-2 md:gap-[11px] lg:gap-[30px]">
-          <article className="relative h-[200px] overflow-hidden rounded-lg bg-dark md:h-80">
+          <article className="relative h-[200px] overflow-hidden rounded-lg bg-dark transition-transform duration-300 hover:-translate-y-1 md:h-80">
             <Image
               src={yx1Earphones}
               alt=""
@@ -90,7 +90,7 @@ export default function ProductShowcase() {
             />
           </article>
 
-          <article className="flex h-[200px] flex-col items-start justify-center rounded-lg bg-surface px-4 md:h-80 md:px-0 md:pl-[41px] lg:pl-[95px]">
+          <article className="flex h-[200px] flex-col items-start justify-center rounded-lg bg-surface px-4 transition-transform duration-300 hover:-translate-y-1 md:h-80 md:px-0 md:pl-[41px] lg:pl-[95px]">
             <h2 className="text-[15px] font-bold uppercase leading-5 tracking-[1px] md:text-[28px] md:leading-[38px] md:tracking-[2px]">
               YX1 Earphones
             </h2>

@@ -33,25 +33,25 @@ export default function BestGearSection() {
             </p>
           </div>
 
-          <div className="order-1 lg:order-2">
+          <div className="group order-1 overflow-hidden rounded-lg lg:order-2">
             <Image
               src={bestGearMobile}
               alt="Person listening to music with headphones"
-              className="h-[300px] w-full rounded-lg object-cover md:hidden"
+              className="h-[300px] w-full rounded-lg object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none md:hidden"
               sizes="(max-width: 767px) calc(100vw - 48px), 327px"
             />
 
             <Image
               src={bestGearTablet}
               alt="Person listening to music with headphones"
-              className="hidden h-[300px] w-[689px] rounded-lg object-cover md:block lg:hidden"
+              className="hidden h-[300px] w-[689px] rounded-lg object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none md:block lg:hidden"
               sizes="689px"
             />
 
             <Image
               src={bestGearDesktop}
               alt="Person listening to music with headphones"
-              className="hidden h-[588px] w-[540px] rounded-lg object-cover lg:block"
+              className="hidden h-[588px] w-[540px] rounded-lg object-cover transition-transform duration-500 group-hover:scale-105 motion-reduce:transition-none lg:block"
               sizes="540px"
             />
           </div>
