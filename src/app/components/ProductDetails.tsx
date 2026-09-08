@@ -4,6 +4,7 @@ import Link from "next/link";
 import type { Product, ResponsiveImage } from "@/product-data";
 import CategoryNavigation from "@/app/components/CategoryNavigation";
 import ProductPurchase from "@/app/components/ProductPurchase";
+import { FaArrowLeft } from "react-icons/fa6";
 
 type ProductDetailsProps = {
   product: Product;
@@ -60,9 +61,10 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
         <div className="mx-auto max-w-[327px] px-0 pt-4 md:max-w-[689px] md:pt-8 lg:max-w-[1110px] lg:pt-[79px]">
           <Link
             href={`/category/${product.category}`}
-            className="text-[15px] leading-[25px] text-black/50 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            className="inline-flex items-center gap-2 text-[15px] leading-[25px] text-black/50 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
           >
-            Go back
+            <FaArrowLeft aria-hidden="true" size={14} />
+            <span>Go back</span>
           </Link>
 
           <section

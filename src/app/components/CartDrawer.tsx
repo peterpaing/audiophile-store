@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
 import type { CartItem } from "@/app/components/CartProvider";
 
@@ -171,9 +172,9 @@ export default function CartDrawer({
                       type="button"
                       aria-label={`Decrease quantity of ${product.name}`}
                       onClick={() => onUpdateQuantity(product.id, quantity - 1)}
-                      className="flex h-8 w-8 items-center justify-center text-[13px] font-bold text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
+                      className="flex h-8 w-8 items-center justify-center text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
                     >
-                      −
+                      <FaMinus aria-hidden="true" size={10} />
                     </button>
 
                     <output
@@ -187,9 +188,9 @@ export default function CartDrawer({
                       type="button"
                       aria-label={`Increase quantity of ${product.name}`}
                       onClick={() => onUpdateQuantity(product.id, quantity + 1)}
-                      className="flex h-8 w-8 items-center justify-center text-[13px] font-bold text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
+                      className="flex h-8 w-8 items-center justify-center text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-primary"
                     >
-                      +
+                      <FaPlus aria-hidden="true" size={10} />
                     </button>
                   </div>
                 </li>

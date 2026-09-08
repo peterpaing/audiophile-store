@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { FaMinus, FaPlus } from "react-icons/fa6";
 
 import { useCart } from "@/app/components/CartProvider";
 import type { Product } from "@/product-data";
@@ -34,9 +35,9 @@ export default function ProductPurchase({ product }: ProductPurchaseProps) {
             onClick={decreaseQuantity}
             disabled={quantity === 1}
             aria-label="Decrease quantity"
-            className="flex h-12 w-12 items-center justify-center text-[13px] font-bold text-black/25 transition-colors hover:text-primary disabled:cursor-not-allowed disabled:hover:text-black/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="flex h-12 w-12 items-center justify-center text-black/25 transition-colors hover:text-primary disabled:cursor-not-allowed disabled:hover:text-black/25 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            −
+            <FaMinus aria-hidden="true" size={12} />
           </button>
 
           <output
@@ -51,9 +52,9 @@ export default function ProductPurchase({ product }: ProductPurchaseProps) {
             type="button"
             onClick={increaseQuantity}
             aria-label="Increase quantity"
-            className="flex h-12 w-12 items-center justify-center text-[13px] font-bold text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+            className="flex h-12 w-12 items-center justify-center text-black/25 transition-colors hover:text-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
           >
-            +
+            <FaPlus aria-hidden="true" size={12} />
           </button>
         </div>
 
