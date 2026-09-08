@@ -22,7 +22,10 @@ export default function CartButton() {
       <Image src={cartIcon} alt="" aria-hidden="true" />
 
       {cartCount > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-white">
+        <span
+          key={cartCount}
+          className="animate-cart-bump absolute -right-1 -top-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-primary px-1 text-[10px] font-bold text-white"
+        >
           {cartCount}
         </span>
       )}

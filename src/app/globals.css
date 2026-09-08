@@ -3,7 +3,6 @@
 :root {
   --background: #fafafa;
   --foreground: #000000;
-
   --primary: #d87d4a;
   --primary-hover: #fbaf85;
   --black: #000000;
@@ -21,7 +20,6 @@
   --color-dark: var(--dark);
   --color-surface: var(--surface);
   --color-error: var(--error);
-
   --font-sans: var(--font-manrope);
 }
 
@@ -94,6 +92,20 @@ body {
   }
 }
 
+@keyframes cart-bump {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.35);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
 @media (prefers-reduced-motion: no-preference) {
   .animate-fade-in {
     animation: fade-in 200ms ease-out both;
@@ -105,6 +117,10 @@ body {
 
   .animate-slide-in-right {
     animation: slide-in-right 250ms ease-out both;
+  }
+
+  .animate-cart-bump {
+    animation: cart-bump 350ms ease-out;
   }
 }
 
