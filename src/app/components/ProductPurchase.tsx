@@ -2,28 +2,23 @@
 
 import { useState } from "react";
 
+import { useCart } from "@/app/components/CartProvider";
+import type { Product } from "@/product-data";
+
 type ProductPurchaseProps = {
-  productName: string;
+  product: Product;
 };
 
-export default function ProductPurchase({
-  productName,
-}: ProductPurchaseProps) {
+export default function ProductPurchase({ product }: ProductPurchaseProps) {
   const [quantity, setQuantity] = useState(1);
-  const [message, setMessage] = useState("");
+  const { addToCart } = useCart();
 
   const decreaseQuantity = () => {
     setQuantity((current) => Math.max(1, current - 1));
-    setMessage("");
   };
 
   const increaseQuantity = () => {
     setQuantity((current) => current + 1);
-    setMessage("");
-  };
-
-  const addToCart = () => {
-    setMessage(`${quantity} ${productName} added to cart.`);
   };
 
   return (
@@ -31,7 +26,7 @@ export default function ProductPurchase({
       <div className="flex flex-wrap gap-4">
         <div
           role="group"
-          aria-label={`Choose quantity for ${productName}`}
+          aria-label={`Choose quantity for ${product.name}`}
           className="flex h-12 items-center bg-surface"
         >
           <button
@@ -46,6 +41,7 @@ export default function ProductPurchase({
 
           <output
             aria-live="polite"
+            aria-label={`Quantity: ${quantity}`}
             className="flex w-10 justify-center text-[13px] font-bold"
           >
             {quantity}
@@ -63,16 +59,12 @@ export default function ProductPurchase({
 
         <button
           type="button"
-          onClick={addToCart}
+          onClick={() => addToCart(product, quantity)}
           className="min-h-12 bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           Add to cart
         </button>
       </div>
-
-      <p aria-live="polite" className="sr-only">
-        {message}
-      </p>
     </div>
   );
 }

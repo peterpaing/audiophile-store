@@ -102,7 +102,7 @@ export default function ProductDetails({ product }: ProductDetailsProps) {
                 {formatPrice(product.price)}
               </p>
 
-              <ProductPurchase productName={product.name} />
+              <ProductPurchase product={product} />
             </div>
           </section>
 

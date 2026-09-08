@@ -3,7 +3,7 @@ import Link from "next/link";
 import NavList from "./NavList";
 
 import logo from "@/assets/shared/desktop/logo.svg";
-import cartIcon from "@/assets/shared/desktop/icon-cart.svg";
+import CartButton from "./CartButton";
 
 export default function Header() {
   return (
@@ -29,13 +29,7 @@ export default function Header() {
         </div>
 
         {/* Shopping cart */}
-        <button
-          type="button"
-          aria-label="Open shopping cart"
-          className="ml-auto rounded transition-opacity hover:opacity-70 focus-visible:opacity-70 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
-        >
-          <Image src={cartIcon} alt="" />
-        </button>
+        <CartButton />
       </div>
     </header>
   );
