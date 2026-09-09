@@ -11,7 +11,11 @@ export default function CheckoutLayout({
   return (
     <>
       <Header />
-      {children}
+
+      <main id="main-content" tabIndex={-1} className="flex-1 outline-none">
+        {children}
+      </main>
+
       <Footer />
     </>
   );

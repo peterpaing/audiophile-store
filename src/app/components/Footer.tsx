@@ -27,8 +27,10 @@ const socialLinks = [
 export default function Footer() {
   return (
     <footer className="relative overflow-hidden bg-dark text-white">
-      {/* Orange line: centered on mobile, left on tablet and desktop */}
-      <div className="absolute top-0 left-1/2 h-1 w-[101px] -translate-x-1/2 bg-primary md:left-10 md:translate-x-0 min-[1440px]:left-[calc((100%-1110px)/2)]" />
+      <div
+        aria-hidden="true"
+        className="absolute left-1/2 top-0 h-1 w-[101px] -translate-x-1/2 bg-primary md:left-10 md:translate-x-0 min-[1440px]:left-[calc((100%-1110px)/2)]"
+      />
 
       <div className="mx-auto max-w-[1110px] px-6 pb-10 pt-[52px] md:px-10 md:pb-10 md:pt-[60px] min-[1440px]:px-0 min-[1440px]:pb-12 min-[1440px]:pt-[75px]">
         <div className="flex flex-col items-center md:items-start min-[1440px]:flex-row min-[1440px]:items-start min-[1440px]:justify-between">

@@ -41,27 +41,27 @@ export default function CategoryNavigation() {
           <li key={category.href} className="flex-1">
             <Link
               href={category.href}
-              className="group relative flex h-[165px] w-full flex-col items-center justify-end rounded-lg bg-surface pb-[22px] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:pb-[20px] lg:h-[204px] lg:pb-[30px]"
+              className="group relative flex h-[165px] w-full flex-col items-center justify-end rounded-lg bg-surface pb-[22px] transition-transform duration-300 hover:-translate-y-1 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary motion-reduce:transform-none motion-reduce:transition-none md:pb-[20px] lg:h-[204px] lg:pb-[30px]"
             >
               <Image
                 src={category.image}
                 alt=""
                 aria-hidden="true"
                 sizes="(max-width: 767px) 190px, (max-width: 1023px) 145px, 190px"
-                className={`pointer-events-none absolute left-1/2 -translate-x-1/2 object-contain transition-transform duration-300 group-hover:scale-105 ${category.imageClassName}`}
+                className={`pointer-events-none absolute left-1/2 -translate-x-1/2 object-contain transition-transform duration-300 group-hover:scale-105 motion-reduce:transition-none ${category.imageClassName}`}
               />
 
               <span className="text-[15px] font-bold uppercase tracking-[1.07px]">
                 {category.name}
               </span>
 
-              <span className="mt-3 flex items-center gap-[13px] text-[13px] font-bold uppercase tracking-[1px] text-black/50 transition-colors group-hover:text-primary group-focus-visible:text-primary lg:mt-4">
+              <span className="mt-3 flex items-center gap-[13px] text-[13px] font-bold uppercase tracking-[1px] text-black/60 transition-colors group-hover:text-black lg:mt-4">
                 Shop
                 <Image
                   src={arrowRight}
                   alt=""
                   aria-hidden="true"
-                  className="h-3 w-2 transition-transform duration-300 group-hover:translate-x-1"
+                  className="h-3 w-2 transition-transform duration-300 group-hover:translate-x-1 motion-reduce:transition-none"
                 />
               </span>
             </Link>

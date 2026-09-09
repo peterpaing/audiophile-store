@@ -1,5 +1,4 @@
 import type { StaticImageData } from "next/image";
-import Image from "next/image";
 import Link from "next/link";
 
 import xx99MarkTwoDesktop from "@/assets/product-xx99-mark-two-headphones/desktop/image-category-page-preview.jpg";
@@ -71,35 +70,20 @@ function ProductImage({
   productName: string;
 }) {
   return (
-    <div className="relative h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0">
-      <Image
-        src={image.mobile}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="(max-width: 767px) calc(100vw - 48px), 327px"
-        className="object-cover md:hidden"
-      />
+    <div className="h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0">
+      <picture>
+        <source media="(max-width: 767px)" srcSet={image.mobile.src} />
+        <source media="(max-width: 1023px)" srcSet={image.tablet.src} />
 
-      <Image
-        src={image.tablet}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="(max-width: 1023px) 689px, 540px"
-        className="hidden object-cover md:block lg:hidden"
-      />
-
-      <Image
-        src={image.desktop}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="540px"
-        className="hidden object-cover lg:block"
-      />
-
-      <span className="sr-only">{productName}</span>
+        <img
+          src={image.desktop.src}
+          alt={productName}
+          width={image.desktop.width}
+          height={image.desktop.height}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+      </picture>
     </div>
   );
 }
@@ -132,9 +116,9 @@ export default function HeadphoneProductList() {
               )}
 
               <h3
-                className={`font-bold uppercase leading-[38px] tracking-[1px] md:text-[40px] md:leading-[44px] md:tracking-[1.43px] ${
+                className={`text-[28px] font-bold uppercase leading-[38px] tracking-[1px] md:text-[40px] md:leading-[44px] md:tracking-[1.43px] ${
                   product.isNew ? "mt-6" : ""
-                } text-[28px]`}
+                }`}
               >
                 {product.name}
               </h3>
@@ -145,7 +129,7 @@ export default function HeadphoneProductList() {
 
               <Link
                 href={`/products/${product.slug}`}
-                className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
+                className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
               >
                 See product
               </Link>

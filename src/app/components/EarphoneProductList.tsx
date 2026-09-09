@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 import yx1Desktop from "@/assets/product-yx1-earphones/desktop/image-category-page-preview.jpg";
@@ -16,36 +15,20 @@ export default function EarphoneProductList() {
       </h2>
 
       <article className="mx-auto flex max-w-[327px] flex-col gap-8 md:max-w-[689px] md:gap-[52px] lg:max-w-[1110px] lg:flex-row lg:items-center lg:gap-[125px]">
-        <div
-          aria-label="YX1 Wireless Earphones"
-          className="relative h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0"
-        >
-          <Image
-            src={yx1Mobile}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="(max-width: 767px) calc(100vw - 48px), 327px"
-            className="object-cover md:hidden"
-          />
+        <div className="h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0">
+          <picture>
+            <source media="(max-width: 767px)" srcSet={yx1Mobile.src} />
+            <source media="(max-width: 1023px)" srcSet={yx1Tablet.src} />
 
-          <Image
-            src={yx1Tablet}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="(max-width: 1023px) 689px, 540px"
-            className="hidden object-cover md:block lg:hidden"
-          />
-
-          <Image
-            src={yx1Desktop}
-            alt=""
-            aria-hidden="true"
-            fill
-            sizes="540px"
-            className="hidden object-cover lg:block"
-          />
+            <img
+              src={yx1Desktop.src}
+              alt="YX1 Wireless Earphones"
+              width={yx1Desktop.width}
+              height={yx1Desktop.height}
+              loading="lazy"
+              className="h-full w-full object-cover"
+            />
+          </picture>
         </div>
 
         <div className="text-center lg:w-[445px] lg:text-left">
@@ -66,7 +49,7 @@ export default function EarphoneProductList() {
 
           <Link
             href="/products/yx1-wireless-earphones"
-            className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
+            className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
           >
             See product
           </Link>

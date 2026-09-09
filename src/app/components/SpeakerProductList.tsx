@@ -1,5 +1,4 @@
 import type { StaticImageData } from "next/image";
-import Image from "next/image";
 import Link from "next/link";
 
 import zx9Desktop from "@/assets/product-zx9-speaker/desktop/image-category-page-preview.jpg";
@@ -56,36 +55,20 @@ function ProductImage({
   productName: string;
 }) {
   return (
-    <div
-      aria-label={productName}
-      className="relative h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0"
-    >
-      <Image
-        src={image.mobile}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="(max-width: 767px) calc(100vw - 48px), 327px"
-        className="object-cover md:hidden"
-      />
+    <div className="h-[352px] w-full overflow-hidden rounded-lg bg-surface md:h-[352px] lg:h-[560px] lg:w-[540px] lg:shrink-0">
+      <picture>
+        <source media="(max-width: 767px)" srcSet={image.mobile.src} />
+        <source media="(max-width: 1023px)" srcSet={image.tablet.src} />
 
-      <Image
-        src={image.tablet}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="(max-width: 1023px) 689px, 540px"
-        className="hidden object-cover md:block lg:hidden"
-      />
-
-      <Image
-        src={image.desktop}
-        alt=""
-        aria-hidden="true"
-        fill
-        sizes="540px"
-        className="hidden object-cover lg:block"
-      />
+        <img
+          src={image.desktop.src}
+          alt={productName}
+          width={image.desktop.width}
+          height={image.desktop.height}
+          loading="lazy"
+          className="h-full w-full object-cover"
+        />
+      </picture>
     </div>
   );
 }
@@ -131,7 +114,7 @@ export default function SpeakerProductList() {
 
               <Link
                 href={`/products/${product.slug}`}
-                className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
+                className="mt-6 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-10"
               >
                 See product
               </Link>

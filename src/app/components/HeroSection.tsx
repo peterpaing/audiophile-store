@@ -9,8 +9,7 @@ export default function HeroSection() {
       <div className="relative mx-auto h-[600px] max-w-[1110px] px-6 md:h-[639px] md:px-10 lg:h-[633px] lg:px-0">
         <Image
           src={heroHeadphones}
-          alt=""
-          aria-hidden="true"
+          alt="XX99 Mark II Headphones"
           priority
           sizes="(max-width: 767px) 650px, (max-width: 1023px) 730px, 610px"
           className="animate-fade-up pointer-events-none absolute left-1/2 top-2 z-0 w-[650px] max-w-none -translate-x-1/2 object-contain drop-shadow-[0_20px_28px_rgba(0,0,0,0.5)] md:top-[-10px] md:w-[730px] lg:left-auto lg:right-[-20px] lg:top-[18px] lg:w-[610px] lg:translate-x-0"
@@ -43,7 +42,7 @@ export default function HeroSection() {
 
             <Link
               href="/products/xx99-mark-two-headphones"
-              className="mt-7 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover md:mt-10"
+              className="mt-7 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover md:mt-10"
             >
               See product
             </Link>

@@ -7,19 +7,18 @@ import zx7Speaker from "@/assets/home/products/zx7-speaker.png";
 import yx1Earphones from "@/assets/home/products/yx1-earphones.png";
 
 const darkButtonClass =
-  "inline-flex min-h-12 items-center justify-center bg-black px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-[#4C4C4C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+  "inline-flex min-h-12 items-center justify-center bg-black px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-[#4C4C4C] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary-hover";
 
 const outlineButtonClass =
-  "inline-flex min-h-12 items-center justify-center border border-black px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black";
+  "inline-flex min-h-12 items-center justify-center border border-black px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary";
 
 export default function ProductShowcase() {
   return (
-    <section
-      aria-label="Featured products"
-      className="mt-20 px-6 md:mt-20 md:px-10 lg:mt-24 lg:px-10"
-    >
+    <section className="mt-20 px-6 md:mt-20 md:px-10 lg:mt-24 lg:px-10">
+      <h2 className="sr-only">Featured products</h2>
+
       <div className="mx-auto max-w-[500px] space-y-6 md:max-w-[760px] md:space-y-8 lg:max-w-[1110px] lg:space-y-12">
-        <article className="relative h-[560px] overflow-hidden rounded-lg bg-primary text-white transition-transform duration-300 hover:-translate-y-1 md:h-[620px] lg:h-95">
+        <article className="relative h-[560px] overflow-hidden rounded-lg bg-primary transition-transform duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none md:h-[620px] lg:h-[560px]">
           <Image
             src={circles}
             alt=""
@@ -36,11 +35,11 @@ export default function ProductShowcase() {
           />
 
           <div className="absolute inset-x-6 bottom-[45px] flex flex-col items-center text-center md:bottom-[45px] lg:inset-x-auto lg:left-[650px] lg:top-1/2 lg:bottom-auto lg:w-[350px] lg:-translate-y-1/2 lg:items-start lg:text-left">
-            <h2 className="max-w-[260px] text-[36px] font-bold uppercase leading-[40px] tracking-[1.3px] md:text-[56px] md:leading-[58px] md:tracking-[2px]">
+            <h3 className="max-w-[260px] text-[36px] font-bold uppercase leading-[40px] tracking-[1.3px] text-black md:text-[56px] md:leading-[58px] md:tracking-[2px]">
               ZX9 Speaker
-            </h2>
+            </h3>
 
-            <p className="mt-6 max-w-[349px] text-[15px] leading-[25px] text-white/75 md:mt-8">
+            <p className="mt-6 max-w-[349px] text-[15px] leading-[25px] text-black/80 md:mt-8">
               Upgrade to premium speakers that are phenomenally built to
               deliver truly remarkable sound.
             </p>
@@ -54,7 +53,7 @@ export default function ProductShowcase() {
           </div>
         </article>
 
-        <article className="relative h-80 overflow-hidden rounded-lg bg-[#D8D8D8] transition-transform duration-300 hover:-translate-y-1">
+        <article className="relative h-80 overflow-hidden rounded-lg bg-[#D8D8D8] transition-transform duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none">
           <Image
             src={zx7Speaker}
             alt=""
@@ -65,9 +64,9 @@ export default function ProductShowcase() {
           />
 
           <div className="relative flex h-full flex-col items-start justify-center pl-6 md:pl-[62px] lg:pl-[95px]">
-            <h2 className="text-[28px] font-bold uppercase leading-[38px] tracking-[2px]">
+            <h3 className="text-[28px] font-bold uppercase leading-[38px] tracking-[2px]">
               ZX7 Speaker
-            </h2>
+            </h3>
 
             <Link
               href="/products/zx7-speaker"
@@ -79,7 +78,7 @@ export default function ProductShowcase() {
         </article>
 
         <div className="grid grid-cols-2 gap-2 md:gap-[11px] lg:gap-[30px]">
-          <article className="relative h-[200px] overflow-hidden rounded-lg bg-dark transition-transform duration-300 hover:-translate-y-1 md:h-80">
+          <article className="relative h-[200px] overflow-hidden rounded-lg bg-dark transition-transform duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none md:h-80">
             <Image
               src={yx1Earphones}
               alt=""
@@ -90,14 +89,14 @@ export default function ProductShowcase() {
             />
           </article>
 
-          <article className="flex h-[200px] flex-col items-start justify-center rounded-lg bg-surface px-4 transition-transform duration-300 hover:-translate-y-1 md:h-80 md:px-0 md:pl-[41px] lg:pl-[95px]">
-            <h2 className="text-[15px] font-bold uppercase leading-5 tracking-[1px] md:text-[28px] md:leading-[38px] md:tracking-[2px]">
+          <article className="flex h-[200px] flex-col items-start justify-center rounded-lg bg-surface px-4 transition-transform duration-300 hover:-translate-y-1 motion-reduce:transform-none motion-reduce:transition-none md:h-80 md:px-0 md:pl-[41px] lg:pl-[95px]">
+            <h3 className="text-[15px] font-bold uppercase leading-5 tracking-[1px] md:text-[28px] md:leading-[38px] md:tracking-[2px]">
               YX1 Earphones
-            </h2>
+            </h3>
 
             <Link
               href="/products/yx1-wireless-earphones"
-              className="mt-3 inline-flex min-h-8 items-center justify-center border border-black px-4 text-[10px] font-bold uppercase tracking-[0.8px] text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-black md:mt-8 md:min-h-12 md:px-8 md:text-[13px] md:tracking-[1px]"
+              className="mt-3 inline-flex min-h-8 items-center justify-center border border-black px-4 text-[10px] font-bold uppercase tracking-[0.8px] text-black transition-colors hover:bg-black hover:text-white focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary md:mt-8 md:min-h-12 md:px-8 md:text-[13px] md:tracking-[1px]"
             >
               See product
             </Link>

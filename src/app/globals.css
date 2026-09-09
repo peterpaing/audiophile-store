@@ -2,7 +2,7 @@
 
 :root {
   --background: #fafafa;
-  --foreground: #000000;
+  --foreground: #101010;
   --primary: #d87d4a;
   --primary-hover: #fbaf85;
   --black: #000000;
@@ -127,5 +127,12 @@ body {
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
+  }
+
+  .animate-fade-in,
+  .animate-fade-up,
+  .animate-slide-in-right,
+  .animate-cart-bump {
+    animation: none;
   }
 }

@@ -21,7 +21,10 @@ export default function NavList() {
   const mobileMenuRef = useRef<HTMLElement>(null);
 
   const isActive = (href: string) => {
-    if (href === "/") return pathname === "/";
+    if (href === "/") {
+      return pathname === "/";
+    }
+
     return pathname.startsWith(href);
   };
 
@@ -31,26 +34,31 @@ export default function NavList() {
   };
 
   useEffect(() => {
-    if (!isMenuOpen) return;
+    if (!isMenuOpen) {
+      return;
+    }
+
+    const previousOverflow = document.body.style.overflow;
 
     mobileMenuRef.current?.focus();
     document.body.style.overflow = "hidden";
 
     const closeOnEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") closeMenu();
+      if (event.key === "Escape") {
+        closeMenu();
+      }
     };
 
     window.addEventListener("keydown", closeOnEscape);
 
     return () => {
-      document.body.style.overflow = "";
+      document.body.style.overflow = previousOverflow;
       window.removeEventListener("keydown", closeOnEscape);
     };
   }, [isMenuOpen]);
 
   return (
     <>
-      {/* Desktop navigation */}
       <nav className="hidden lg:block" aria-label="Desktop navigation">
         <ul className="flex items-center gap-8">
           {navItems.map((item) => (
@@ -71,7 +79,6 @@ export default function NavList() {
         </ul>
       </nav>
 
-      {/* Mobile and tablet hamburger */}
       <button
         ref={menuButtonRef}
         type="button"
@@ -88,27 +95,30 @@ export default function NavList() {
         className="flex h-10 w-10 flex-col items-center justify-center gap-1.5 rounded focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:hidden"
       >
         <span
-          className={`h-0.5 w-4 bg-white transition-transform ${
+          aria-hidden="true"
+          className={`h-0.5 w-4 bg-white transition-transform motion-reduce:transition-none ${
             isMenuOpen ? "translate-y-2 rotate-45" : ""
           }`}
         />
         <span
-          className={`h-0.5 w-4 bg-white transition-opacity ${
+          aria-hidden="true"
+          className={`h-0.5 w-4 bg-white transition-opacity motion-reduce:transition-none ${
             isMenuOpen ? "opacity-0" : ""
           }`}
         />
         <span
-          className={`h-0.5 w-4 bg-white transition-transform ${
+          aria-hidden="true"
+          className={`h-0.5 w-4 bg-white transition-transform motion-reduce:transition-none ${
             isMenuOpen ? "-translate-y-2 -rotate-45" : ""
           }`}
         />
       </button>
 
-      {/* Mobile and tablet menu */}
       {isMenuOpen && (
         <>
           <button
             type="button"
+            tabIndex={-1}
             aria-label="Close navigation menu"
             onClick={closeMenu}
             className="fixed inset-0 top-24 z-40 cursor-default bg-black/40 lg:hidden"
@@ -130,8 +140,8 @@ export default function NavList() {
                     onClick={() => setIsMenuOpen(false)}
                     className={`flex min-h-14 items-center justify-between rounded py-4 text-[13px] font-bold uppercase tracking-[2px] transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary ${
                       isActive(item.href)
-                        ? "text-primary"
-                        : "text-black hover:text-primary"
+                        ? "text-black"
+                        : "text-black hover:text-black"
                     }`}
                   >
                     {item.label}
@@ -139,6 +149,7 @@ export default function NavList() {
                     <Image
                       src={arrowRight}
                       alt=""
+                      aria-hidden="true"
                       className="h-3 w-2"
                     />
                   </Link>

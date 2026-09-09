@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope } from "next/font/google";
+
 import "./globals.css";
 import { CartProvider } from "@/app/components/CartProvider";
 
@@ -54,7 +55,14 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${manrope.variable} h-full antialiased`}>
-      <body className="min-h-full flex flex-col">
+      <body className="flex min-h-full flex-col">
+        <a
+          href="#main-content"
+          className="fixed left-4 top-4 z-[100] -translate-y-20 rounded bg-primary px-4 py-3 text-sm font-bold text-white transition-transform focus:translate-y-0 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+        >
+          Skip to main content
+        </a>
+
         <CartProvider>{children}</CartProvider>
       </body>
     </html>

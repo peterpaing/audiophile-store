@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { FaArrowLeft, FaCheck } from "react-icons/fa6";
+import { FaArrowLeft, FaCheck, FaXmark } from "react-icons/fa6";
 
 import { useCart, type CartItem } from "@/app/components/CartProvider";
 
@@ -19,14 +19,14 @@ function InputField({
   id,
   type = "text",
   autoComplete,
-  required = true,
+  inputMode,
   placeholder,
 }: {
   label: string;
   id: string;
   type?: string;
   autoComplete?: string;
-  required?: boolean;
+  inputMode?: "email" | "numeric" | "tel" | "text";
   placeholder: string;
 }) {
   return (
@@ -42,10 +42,11 @@ function InputField({
         id={id}
         name={id}
         type={type}
-        required={required}
+        required
         autoComplete={autoComplete}
+        inputMode={inputMode}
         placeholder={placeholder}
-        className="mt-2 h-14 w-full rounded-lg border border-black/20 px-6 text-[14px] font-bold tracking-[-0.2px] outline-none transition-colors placeholder:text-black/40 focus:border-primary"
+        className="mt-2 h-14 w-full rounded-lg border border-black/20 px-6 text-[14px] font-bold tracking-[-0.2px] outline-none transition-colors placeholder:text-black/60 focus:border-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
       />
     </div>
   );
@@ -64,7 +65,19 @@ function OrderConfirmation({
 
   useEffect(() => {
     dialogRef.current?.focus();
-  }, []);
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") {
+        onClose();
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [onClose]);
 
   const firstItem = items[0];
   const remainingItems = items.length - 1;
@@ -76,24 +89,37 @@ function OrderConfirmation({
         role="dialog"
         aria-modal="true"
         aria-labelledby="confirmation-heading"
+        aria-describedby="confirmation-description"
         tabIndex={-1}
-        className="animate-fade-up w-full max-w-[540px] rounded-lg bg-white p-8 outline-none md:p-12"
+        className="animate-fade-up relative w-full max-w-[540px] rounded-lg bg-white p-8 outline-none md:p-12"
       >
+        <button
+          type="button"
+          onClick={onClose}
+          aria-label="Close order confirmation"
+          className="absolute right-5 top-5 flex h-11 w-11 items-center justify-center rounded text-black/70 transition-colors hover:text-black focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary md:right-7 md:top-7"
+        >
+          <FaXmark aria-hidden="true" size={20} />
+        </button>
+
         <div
           aria-hidden="true"
-          className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-white"
+          className="flex h-16 w-16 items-center justify-center rounded-full bg-primary text-black"
         >
           <FaCheck aria-hidden="true" size={28} />
         </div>
 
-        <h1
+        <h2
           id="confirmation-heading"
           className="mt-6 text-[24px] font-bold uppercase leading-[28px] tracking-[0.86px] md:text-[32px] md:leading-[36px] md:tracking-[1.14px]"
         >
           Thank you for your order
-        </h1>
+        </h2>
 
-        <p className="mt-4 text-[15px] leading-[25px] text-black/50">
+        <p
+          id="confirmation-description"
+          className="mt-4 text-[15px] leading-[25px] text-black/60"
+        >
           You will receive an email confirmation shortly.
         </p>
 
@@ -112,19 +138,19 @@ function OrderConfirmation({
                   <p className="truncate text-[15px] font-bold uppercase">
                     {firstItem.product.name}
                   </p>
-                  <p className="text-[14px] font-bold text-black/50">
+                  <p className="text-[14px] font-bold text-black/60">
                     {formatPrice(firstItem.product.price)}
                   </p>
                 </div>
 
-                <span className="text-[15px] font-bold text-black/50">
+                <span className="text-[15px] font-bold text-black/60">
                   x{firstItem.quantity}
                 </span>
               </div>
             )}
 
             {remainingItems > 0 && (
-              <p className="mt-3 border-t border-black/10 pt-3 text-center text-[12px] font-bold text-black/50">
+              <p className="mt-3 border-t border-black/10 pt-3 text-center text-[12px] font-bold text-black/60">
                 and {remainingItems} other item
                 {remainingItems > 1 ? "s" : ""}
               </p>
@@ -132,7 +158,7 @@ function OrderConfirmation({
           </div>
 
           <div className="bg-black p-6 text-white md:flex md:w-[198px] md:flex-col md:justify-end">
-            <p className="text-[15px] uppercase text-white/50">Grand total</p>
+            <p className="text-[15px] uppercase text-white/60">Grand total</p>
             <p className="mt-2 text-[18px] font-bold">
               {formatPrice(total)}
             </p>
@@ -142,7 +168,7 @@ function OrderConfirmation({
         <Link
           href="/"
           onClick={onClose}
-          className="mt-6 flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+          className="mt-6 flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
         >
           Back to home
         </Link>
@@ -166,31 +192,34 @@ export default function CheckoutContent() {
   const completeOrder = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    if (!event.currentTarget.reportValidity()) {
-      return;
-    }
-
     setCompletedOrder({
       items,
       total: grandTotal,
     });
+
     clearCart();
   };
 
   if (items.length === 0 && !completedOrder) {
     return (
-      <main className="min-h-[60vh] bg-surface px-6 py-16 md:px-10 lg:py-20">
+      <section
+        aria-labelledby="empty-cart-heading"
+        className="min-h-[60vh] bg-surface px-6 py-16 md:px-10 lg:py-20"
+      >
         <div className="mx-auto max-w-[1110px]">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[15px] leading-[25px] text-black/50 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            className="inline-flex items-center gap-2 text-[15px] leading-[25px] text-black/70 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
           >
             <FaArrowLeft aria-hidden="true" size={14} />
             <span>Go back</span>
           </Link>
 
-          <section className="mt-8 rounded-lg bg-white p-8 text-center md:p-12">
-            <h1 className="text-[28px] font-bold uppercase leading-[38px] tracking-[1px]">
+          <div className="mt-8 rounded-lg bg-white p-8 text-center md:p-12">
+            <h1
+              id="empty-cart-heading"
+              className="text-[28px] font-bold uppercase leading-[38px] tracking-[1px]"
+            >
               Your cart is empty
             </h1>
 
@@ -200,23 +229,23 @@ export default function CheckoutContent() {
 
             <Link
               href="/"
-              className="mt-8 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+              className="mt-8 inline-flex min-h-12 items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
             >
               Continue shopping
             </Link>
-          </section>
+          </div>
         </div>
-      </main>
+      </section>
     );
   }
 
   return (
     <>
-      <main className="bg-surface px-6 py-4 md:px-10 md:py-8 lg:py-[79px]">
+      <section className="bg-surface px-6 py-4 md:px-10 md:py-8 lg:py-[79px]">
         <div className="mx-auto max-w-[1110px]">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-[15px] leading-[25px] text-black/50 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
+            className="inline-flex items-center gap-2 text-[15px] leading-[25px] text-black/70 transition-colors hover:text-primary focus-visible:rounded focus-visible:text-primary focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary"
           >
             <FaArrowLeft aria-hidden="true" size={14} />
             <span>Go back</span>
@@ -225,7 +254,6 @@ export default function CheckoutContent() {
           <div className="mt-6 flex flex-col gap-8 lg:mt-[38px] lg:flex-row lg:items-start">
             <form
               id="checkout-form"
-              noValidate
               onSubmit={completeOrder}
               className="rounded-lg bg-white p-6 md:p-7 lg:w-[730px] lg:p-12"
             >
@@ -249,6 +277,7 @@ export default function CheckoutContent() {
                     id="email"
                     label="Email Address"
                     type="email"
+                    inputMode="email"
                     autoComplete="email"
                     placeholder="alexei@mail.com"
                   />
@@ -256,6 +285,7 @@ export default function CheckoutContent() {
                     id="phone"
                     label="Phone Number"
                     type="tel"
+                    inputMode="tel"
                     autoComplete="tel"
                     placeholder="+1 202-555-0136"
                   />
@@ -280,6 +310,7 @@ export default function CheckoutContent() {
                   <InputField
                     id="zip-code"
                     label="ZIP Code"
+                    inputMode="numeric"
                     autoComplete="postal-code"
                     placeholder="10001"
                   />
@@ -341,11 +372,15 @@ export default function CheckoutContent() {
                       <InputField
                         id="e-money-number"
                         label="e-Money Number"
+                        inputMode="numeric"
+                        autoComplete="off"
                         placeholder="238521993"
                       />
                       <InputField
                         id="e-money-pin"
                         label="e-Money PIN"
+                        inputMode="numeric"
+                        autoComplete="off"
                         placeholder="6891"
                       />
                     </>
@@ -362,7 +397,7 @@ export default function CheckoutContent() {
 
               <button
                 type="submit"
-                className="mt-10 flex min-h-12 w-full items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:hidden"
+                className="mt-10 flex min-h-12 w-full items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:hidden"
               >
                 Continue and pay
               </button>
@@ -397,13 +432,13 @@ export default function CheckoutContent() {
                         <h3 className="truncate text-[15px] font-bold uppercase">
                           {product.name}
                         </h3>
-                        <p className="mt-1 text-[14px] font-bold text-black/50">
+                        <p className="mt-1 text-[14px] font-bold text-black/60">
                           {formatPrice(product.price)}
                         </p>
                       </div>
                     </div>
 
-                    <span className="text-[15px] font-bold text-black/50">
+                    <span className="text-[15px] font-bold text-black/60">
                       x{quantity}
                     </span>
                   </li>
@@ -412,39 +447,37 @@ export default function CheckoutContent() {
 
               <dl className="mt-8 space-y-2 text-[15px] uppercase">
                 <div className="flex justify-between">
-                  <dt className="text-black/50">Total</dt>
+                  <dt className="text-black/60">Total</dt>
                   <dd className="font-bold">{formatPrice(subtotal)}</dd>
                 </div>
 
                 <div className="flex justify-between">
-                  <dt className="text-black/50">Shipping</dt>
+                  <dt className="text-black/60">Shipping</dt>
                   <dd className="font-bold">{formatPrice(SHIPPING_COST)}</dd>
                 </div>
 
                 <div className="flex justify-between">
-                  <dt className="text-black/50">VAT (included)</dt>
+                  <dt className="text-black/60">VAT (included)</dt>
                   <dd className="font-bold">{formatPrice(vat)}</dd>
                 </div>
 
                 <div className="mt-6 flex justify-between pt-4">
-                  <dt className="text-black/50">Grand total</dt>
-                  <dd className="font-bold text-primary">
-                    {formatPrice(grandTotal)}
-                  </dd>
+                  <dt className="text-black/60">Grand total</dt>
+                  <dd className="font-bold">{formatPrice(grandTotal)}</dd>
                 </div>
               </dl>
 
               <button
                 type="submit"
                 form="checkout-form"
-                className="mt-8 hidden min-h-12 w-full items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-white transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:flex"
+                className="mt-8 hidden min-h-12 w-full items-center justify-center bg-primary px-8 text-[13px] font-bold uppercase tracking-[1px] text-black transition-colors hover:bg-primary-hover focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary lg:flex"
               >
                 Continue and pay
               </button>
             </aside>
           </div>
         </div>
-      </main>
+      </section>
 
       {completedOrder && (
         <OrderConfirmation
